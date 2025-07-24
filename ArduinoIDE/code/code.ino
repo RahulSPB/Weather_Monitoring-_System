@@ -4,21 +4,21 @@
 #include "ThingSpeak.h"
 WiFiClient  client;
 
-unsigned long myChannelNumber = 300XXXX;
-const char * myWriteAPIKey = "2FRBHFNC31XXXXXX";
+unsigned long myChannelNumber = 300XXXX;  //your ChannelNumber
+const char * myWriteAPIKey = "2FRBHFNC31XXXXXX"; //your WriteAPIKey
 
 const char* ssid = "YOURSSID";   // your network SSID (name) 
 const char* password = "PASSWORD";   // your network password
 
 // Your Domain name with URL path or IP address with path
-String openWeatherMapApiKey = "26cb5cceb44ac3e951b281fb5e2XXXXX";
-String city = "Guwahati";
-String countryCode = "IN";
+String openWeatherMapApiKey = "26cb5cceb44ac3e951b281fb5e2XXXXX";   // your openWeatherMapApiKey
+String city = "Guwahati";   //city to moniter
+String countryCode = "IN";  //country code
 
 // THE DEFAULT TIMER IS SET TO 10 SECONDS FOR TESTING PURPOSES
 // For a final application, check the API call limits per hour/minute to avoid getting blocked/banned
 unsigned long lastTime = 0;
-unsigned long timerDelay = 10000;
+unsigned long timerDelay = 10000;    //10 seconds of timer delay
 String jsonBuffer;
 
 void setup() {
@@ -41,7 +41,7 @@ void loop() {
   if ((millis() - lastTime) > timerDelay) {
     // Check WiFi connection status
     if(WiFi.status()== WL_CONNECTED){
-      String serverPath = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + countryCode + "&APPID=" + openWeatherMapApiKey;
+      String serverPath = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + countryCode + "&APPID=" + openWeatherMapApiKey;  
        Serial.println(serverPath);
       jsonBuffer = httpGETRequest(serverPath.c_str());
       Serial.println(jsonBuffer);
